@@ -1,26 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import ListarTarefas from './tarefa/ListarTarefas';
+import CadastrarTarefa from './tarefa/CadastrarTarefa';
+import AlterarTarefa from './tarefa/AlterarTarefa';
+import ListarConcluidas from './tarefa/ListarConcluidas';
+import ListarNaoConcluidas from './tarefa/ListarNaoConcluidas';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/listar">Listar Tarefas</Link>
+            </li>
+            <li>
+              <Link to="/cadastrar">Cadastrar Tarefa</Link>
+            </li>
+            <li>
+              <Link to="/alterar">Alterar Tarefa</Link>
+            </li>
+            <li>
+              <Link to="/listarConcluidas">Listar Concluídas</Link>
+            </li>
+            <li>
+              <Link to="/listarnaoconcluidas">Listar Não Concluídas</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Switch>
+          <Route path="/listar" component={ListarTarefas} />
+          <Route path="/cadastrar" component={CadastrarTarefa} />
+          <Route path="/alterar" component={AlterarTarefa} />
+          <Route path="/listarconcluidas" component={ListarConcluidas} />
+          <Route path="/listarnaoconcluidas" component={ListarNaoConcluidas} />
+        </Switch>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
